@@ -1,0 +1,114 @@
+<template>
+  <div class="card" v-if="!empty">
+    <div class="card__top">
+      <div class="card__img">
+        <img :data-src="imgDomain + productData.photo" alt="" v-if="productData" v-lazy-load>
+      </div>
+      <div class="card__title">
+        {{ productData.name }}
+      </div>
+    </div>
+    <div class="card__price">
+      {{ productData.price }} ₽
+    </div>
+    <button class="card__add-to-cart" @click="addToCart"></button>
+    <RatingComp class="card__rating" :rating="productData.rating"></RatingComp>
+  </div>
+  <div class="card card_empty" v-else></div>
+</template>
+
+<script>
+import RatingComp from "@/components/RatingComp";
+export default {
+  props: ['value', 'empty'],
+  data: ()=>({
+    imgDomain: 'https://frontend-test.idaproject.com'
+  }),
+  components: { RatingComp },
+  computed: {
+    productData() {
+      return this.$store.getters["main/getProductById"](this.value.id)
+    }
+  },
+  methods: {
+    addToCart() {
+      this.$store.commit('main/addToCart', this.value.id)
+    }
+  },
+  mounted() {
+  }
+}
+</script>
+
+<style lang="scss">
+@import "~assets/styles/_mixins.scss";
+@import "~assets/styles/_vars.scss";
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: calc(100% / 4 - 16px / 4 * 3);
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: $white;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
+  font-size: 0.875rem;
+  color: $grey;
+  &_empty {
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+.card__rating {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+}
+.card__img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 180px;
+  img {
+    max-height: 100%;
+    transition: transform 0.4s;
+  }
+}
+.card {
+  &:hover {
+    .card__img {
+      img {
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+.card__title {
+  margin-top: 16px;
+}
+.card__price {
+  margin-top: 6px;
+  color: $black;
+  font-weight: 700;
+}
+.card__add-to-cart {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-color: transparent;
+  background-image: url('~assets/img/cart-sm.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  outline: none;
+
+  &:hover {
+    background-image: url('~assets/img/cart-sm-hover.svg');
+  }
+}
+</style>
