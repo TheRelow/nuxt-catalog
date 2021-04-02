@@ -1,10 +1,10 @@
 <template>
-  <div id="default-layout">
+  <div id="default-layout" class="page">
     <header-comp></header-comp>
-    <main class="main wrapper">
+    <main :class="{[$style.main]: true, 'wrapper': true}">
       <Nuxt />
     </main>
-    <CartPopup v-if="isCartOpened"></CartPopup>
+    <CartPopup></CartPopup>
   </div>
 </template>
 
@@ -16,15 +16,15 @@ export default {
   components: {
     HeaderComp, CartPopup
   },
-  computed: {
-    isCartOpened() {
-      return this.$store.getters["main/isCartOpened"]
+  async mounted() {
+    if (!this.$store.getters['main/isLsChecked']) {
+      await this.$store.commit('main/checkLocalStorageCart')
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" module>
 .main {
   margin-top: 98px;
 }

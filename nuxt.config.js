@@ -26,8 +26,14 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/baseComponents.js'
+    '~/plugins/baseComponents.js',
+    {src: '~/plugins/vuelidate'},
   ],
+
+  router: {
+    linkActiveClass: '_active-link',
+    linkExactActiveClass: '_exact-active-link',
+  },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

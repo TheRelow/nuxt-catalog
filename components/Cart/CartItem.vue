@@ -1,19 +1,19 @@
 <template>
-  <div class="cart__item">
-    <div class="cart__item-img">
+  <div :class="$style['cart__item']">
+    <div :class="$style['cart__item-img']">
       <img :data-src="imgDomain + productData.photo" alt="" v-if="productData" v-lazy-load>
     </div>
-    <div class="cart__item-info">
-      <div class="cart__item-info-top">
-        <div class="cart__item-title">
+    <div :class="$style['cart__item-info']">
+      <div :class="$style['cart__item-info-top']">
+        <div :class="$style['cart__item-title']">
           {{ productData.name }}
         </div>
-        <div class="cart__item-price">
+        <div :class="$style['cart__item-price']">
           {{ productData.price }} ₽
         </div>
       </div>
       <RatingComp :rating="productData.rating"></RatingComp>
-      <button class="cart__item-trash" @click="removeFromCart">
+      <button :class="$style['cart__item-trash']" @click="removeFromCart">
 
       </button>
     </div>
@@ -41,7 +41,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" module>
 @import "~assets/styles/_mixins.scss";
 @import "~assets/styles/_vars.scss";
 .cart__item {

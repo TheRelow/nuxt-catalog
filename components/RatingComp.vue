@@ -1,6 +1,6 @@
 <template>
-  <div class="rating">
-    <div class="rating__star"></div>
+  <div :class="$style.rating">
+    <div :class="$style.rating__star"></div>
     {{ rating }}
   </div>
 </template>
@@ -15,7 +15,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" module>
 @import "~assets/styles/_mixins.scss";
 @import "~assets/styles/_vars.scss";
 

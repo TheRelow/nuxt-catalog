@@ -3,7 +3,7 @@
     <p>
       Пока что вы ничего не добавили в корзину.
     </p>
-    <button class="btn" @click="toggleCart">Перейти к выбору</button>
+    <base-btn @click="toggleCart">Перейти к выбору</base-btn>
   </div>
 </template>
 

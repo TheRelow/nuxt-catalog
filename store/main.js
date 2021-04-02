@@ -6,6 +6,7 @@ export const state = () => ({
   isCartOpened: false,
   isModifiedProductList: false,
   isModifiedCategories: false,
+  isLsChecked: false
 })
 
 export const mutations = {
@@ -38,12 +39,25 @@ export const mutations = {
     if (state.cart.indexOf(payload) === -1) {
       state.cart.push(payload)
     }
+    localStorage.setItem('cart', JSON.stringify(state.cart))
   },
   removeFromCart(state, payload) {
     const index = state.cart.indexOf(payload)
     if (index > -1) {
       state.cart.splice(index, 1);
     }
+    localStorage.setItem('cart', JSON.stringify(state.cart))
+  },
+  removeAllFromCart(state) {
+    state.cart = []
+    localStorage.setItem('cart', JSON.stringify(state.cart))
+  },
+  checkLocalStorageCart(state) {
+    let lsCart = localStorage.getItem('cart')
+    if (lsCart) {
+      state.cart = JSON.parse(lsCart)
+    }
+    state.isLsChecked = true
   }
 }
 
@@ -94,7 +108,18 @@ export const getters = {
   isCartOpened: s => {
     return s.isCartOpened
   },
+  isLsChecked: s => {
+    return s.isLsChecked
+  },
   isModifiedCategories: s => {
     return s.isModifiedCategories
+  },
+  isProductInCart: s => id => {
+    let idx = s.cart.indexOf(id)
+    console.log(idx)
+    if (idx > - 1) {
+      return true
+    }
+    return false
   }
 }

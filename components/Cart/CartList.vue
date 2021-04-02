@@ -1,8 +1,6 @@
 <template>
-  <div class="cart__list">
-    <div class="cart__text">
-      Товары в корзине
-    </div>
+  <div :class="$style['cart__list']">
+    <base-subtitle>Товары в корзине</base-subtitle>
     <CartItem v-for="(id, index) in cardProducts" :key="id.name" :value="{id, index}"></CartItem>
   </div>
 </template>
@@ -22,11 +20,10 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" module>
 @import "~assets/styles/_mixins.scss";
 @import "~assets/styles/_vars.scss";
-.cart__text {
-  margin-bottom: 16px;
-  color: $grey;
+.cart__list {
+  margin-bottom: 32px;
 }
 </style>

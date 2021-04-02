@@ -1,5 +1,5 @@
 <template>
-  <div class="card-list">
+  <div :class="$style['card-list']">
     <CardComp v-for="(id, index) in categoryProducts" :key="id.name" :value="{id, index}"></CardComp>
     <CardComp :empty="true"></CardComp>
     <CardComp :empty="true"></CardComp>
@@ -21,7 +21,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" module>
 @import "~assets/styles/_mixins.scss";
 @import "~assets/styles/_vars.scss";
 .card-list {

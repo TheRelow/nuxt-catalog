@@ -1,20 +1,20 @@
 <template>
-  <div class="card" v-if="!empty">
-    <div class="card__top">
-      <div class="card__img">
+  <div :class="$style.card" v-if="!empty">
+    <div :class="$style['card__top']">
+      <div :class="$style['card__img']">
         <img :data-src="imgDomain + productData.photo" alt="" v-if="productData" v-lazy-load>
       </div>
-      <div class="card__title">
+      <div :class="$style['card__title']">
         {{ productData.name }}
       </div>
     </div>
-    <div class="card__price">
+    <div :class="$style['card__price']">
       {{ productData.price }} ₽
     </div>
-    <button class="card__add-to-cart" @click="addToCart"></button>
-    <RatingComp class="card__rating" :rating="productData.rating"></RatingComp>
+    <button :class="{[$style['card__add-to-cart']]: true, [$style.active]: isProductInCart}" @click="addToCart"></button>
+    <RatingComp :class="$style['card__rating']" :rating="productData.rating"></RatingComp>
   </div>
-  <div class="card card_empty" v-else></div>
+  <div :class="{[$style.card]: true, [$style['card_empty']]: true}" v-else></div>
 </template>
 
 <script>
@@ -28,6 +28,9 @@ export default {
   computed: {
     productData() {
       return this.$store.getters["main/getProductById"](this.value.id)
+    },
+    isProductInCart() {
+      return this.$store.getters["main/isProductInCart"](this.value.id)
     }
   },
   methods: {
@@ -40,7 +43,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" module>
 @import "~assets/styles/_mixins.scss";
 @import "~assets/styles/_vars.scss";
 .card {
@@ -59,6 +62,15 @@ export default {
   &_empty {
     background-color: transparent;
     box-shadow: none;
+  }
+  @include _1024 {
+    @include col(3)
+  }
+  @include _850 {
+    @include col(2)
+  }
+  @include _440 {
+    width: 100%;
   }
 }
 .card__rating {
@@ -106,8 +118,7 @@ export default {
   background-position: center;
   cursor: pointer;
   outline: none;
-
-  &:hover {
+  &:hover, &.active {
     background-image: url('~assets/img/cart-sm-hover.svg');
   }
 }

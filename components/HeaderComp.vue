@@ -1,9 +1,9 @@
 <template>
-  <header class="header">
-    <div class="header__inner wrapper">
-      <nuxt-link to="/" class="header__logo">TestList</nuxt-link>
-      <button class="header__cart" @click="toggleCart">
-        <span class="header__cart-pin" v-if="cartCount">{{cartCount}}</span>
+  <header :class="$style.header">
+    <div :class="{[$style['header__inner']]: true, 'wrapper': true}">
+      <nuxt-link to="/" :class="$style['header__logo']">TestList</nuxt-link>
+      <button :class="$style['header__cart']" @click="toggleCart">
+        <span :class="$style['header__cart-pin']" v-if="cartCount">{{cartCount}}</span>
       </button>
     </div>
   </header>
@@ -24,7 +24,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" module>
 @import "~assets/styles/_mixins.scss";
 @import "~assets/styles/_vars.scss";
 .header {
