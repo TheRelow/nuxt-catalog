@@ -45,9 +45,26 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
+    '@nuxtjs/style-resources',
     '@nuxtjs/axios',
     'nuxt-lazy-load',
+    ['vue-currency-filter/nuxt', {
+      symbol : '₽',
+      thousandsSeparator: ' ',
+      fractionCount: 0,
+      fractionSeparator: '.',
+      symbolPosition: 'back',
+      symbolSpacing: true,
+      avoidEmptyDecimals: undefined,
+    }],
   ],
+
+  styleResources: {
+    scss: [
+      'assets/styles/_vars.scss',
+      'assets/styles/_mixins.scss',
+    ]
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},

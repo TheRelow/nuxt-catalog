@@ -17,11 +17,11 @@ import CartSuccess from "@/components/Cart/CartSuccess";
 
 export default {
   async fetch({store}) {
-    if (!store.getters['main/isModifiedProductList']) {
-      await store.dispatch('main/getProductList')
+    if (!store.getters['products/isModifiedProductList']) {
+      await store.dispatch('products/getProductList')
     }
-    if (!store.getters['main/isModifiedCategories']) {
-      await store.dispatch('main/getCategories')
+    if (!store.getters['products/isModifiedCategories']) {
+      await store.dispatch('products/getCategories')
     }
   },
   data: ()=>({
@@ -29,7 +29,7 @@ export default {
   }),
   computed: {
     isEmpty() {
-      if (this.$store.getters["main/getCartCount"] > 0) {
+      if (this.$store.getters["products/getCartCount"] > 0) {
         return false
       }
       return true
@@ -47,8 +47,6 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import "~assets/styles/_mixins.scss";
-@import "~assets/styles/_vars.scss";
 .cart {
   display: flex;
   flex-direction: column;

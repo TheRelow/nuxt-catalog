@@ -9,7 +9,7 @@
           {{ productData.name }}
         </div>
         <div :class="$style['cart__item-price']">
-          {{ productData.price }} ₽
+          {{ productData.price | currency }}
         </div>
       </div>
       <RatingComp :rating="productData.rating"></RatingComp>
@@ -28,12 +28,12 @@ export default {
   }),
   computed: {
     productData() {
-      return this.$store.getters["main/getProductById"](this.value.id)
+      return this.$store.getters["products/getProductById"](this.value.id)
     }
   },
   methods: {
     removeFromCart() {
-      this.$store.commit('main/removeFromCart', this.value.id)
+      this.$store.commit('products/removeFromCart', this.value.id)
     }
   },
   mounted() {
@@ -42,8 +42,6 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import "~assets/styles/_mixins.scss";
-@import "~assets/styles/_vars.scss";
 .cart__item {
   display: flex;
   justify-content: space-between;
@@ -64,6 +62,11 @@ export default {
 }
 .cart__item-title {
   color: $grey;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 }
 .cart__item-price {
   margin-top: 6px;

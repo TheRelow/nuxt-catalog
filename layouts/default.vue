@@ -17,8 +17,8 @@ export default {
     HeaderComp, CartPopup
   },
   async mounted() {
-    if (!this.$store.getters['main/isLsChecked']) {
-      await this.$store.commit('main/checkLocalStorageCart')
+    if (!this.$store.getters['products/isLsChecked']) {
+      await this.$store.commit('products/checkLocalStorageCart')
     }
   }
 }

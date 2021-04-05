@@ -7,8 +7,6 @@
 </template>
 
 <style lang="scss" module>
-@import "~assets/styles/_mixins.scss";
-@import "~assets/styles/_vars.scss";
 .cart-success {
   display: flex;
   flex-direction: column;

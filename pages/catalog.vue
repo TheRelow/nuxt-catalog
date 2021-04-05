@@ -7,7 +7,7 @@
       <div :class="$style['catalog__side']">
         <div :class="$style['catalog__categories']">
           <nuxt-link v-for="(item, index) of categories" :key="index" :to="`/catalog/${index}`" :active-class="$style['_active-link'] + ' _active-link'" :class="{[$style['catalog__category']]: true, 'link': true}">
-            {{ item }}
+            <span>{{ item }}</span>
           </nuxt-link>
         </div>
       </div>
@@ -24,27 +24,24 @@
 export default {
   transition: 'slide-bottom',
   async fetch({store}) {
-    if (!store.getters['main/isModifiedProductList']) {
-      await store.dispatch('main/getProductList')
+    if (!store.getters['products/isModifiedProductList']) {
+      await store.dispatch('products/getProductList')
     }
-    if (!store.getters['main/isModifiedCategories']) {
-      await store.dispatch('main/getCategories')
+    if (!store.getters['products/isModifiedCategories']) {
+      await store.dispatch('products/getCategories')
     }
   },
   data: ()=>({
   }),
   computed: {
     categories() {
-      return this.$store.getters["main/getCategories"]
+      return this.$store.getters["products/getCategories"]
     }
   }
 }
 </script>
 
 <style lang="scss" module>
-
-@import "~assets/styles/_mixins.scss";
-@import "~assets/styles/_vars.scss";
 .catalog {
 
 }
@@ -89,23 +86,19 @@ export default {
 }
 .catalog__category {
   position: relative;
-  display: inline-block;
-  margin-bottom: 16px;
-  &:after {
-    @include pseudo();
-    bottom: 0;
-    left: 0;
-    height: 1px;
-    width: 100%;
-    background-color: currentColor;
-    transition: transform .25s ease;
-    transform-origin: right;
-    transform: scaleX(0);
+  margin-bottom: 14px;
+  span {
+    padding-bottom: 4px;
+    background-image: linear-gradient(120deg, currentColor 0%, currentColor 100%);
+    background-size: 0 1px;
+    background-position: 100% 88%;
+    background-repeat: no-repeat;
+    transition: background-size 0.25s ease;
   }
   &._active-link {
-    &:after {
-      transform: scaleX(1);
-      transform-origin: left;
+    span {
+      background-size: 100% 1px;
+      background-position: 0 88%;
     }
   }
   @include _1024 {

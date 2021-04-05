@@ -5,8 +5,6 @@
 </template>
 
 <style lang="scss">
-@import "~assets/styles/_mixins.scss";
-@import "~assets/styles/_vars.scss";
 .btn {
   display: flex;
   justify-content: center;

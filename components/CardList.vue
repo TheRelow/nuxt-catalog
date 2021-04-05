@@ -15,15 +15,13 @@ export default {
   }),
   computed: {
     categoryProducts() {
-      return this.$store.getters["main/getProductsByCategoryId"](this.$route.params.id)
+      return this.$store.getters["products/getProductsByCategoryId"](this.$route.params.id)
     }
   }
 }
 </script>
 
 <style lang="scss" module>
-@import "~assets/styles/_mixins.scss";
-@import "~assets/styles/_vars.scss";
 .card-list {
   display: flex;
   justify-content: space-between;

@@ -28,8 +28,6 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import "~assets/styles/_mixins.scss";
-@import "~assets/styles/_vars.scss";
 .cart-overlay {
   position: fixed;
   top: 0;

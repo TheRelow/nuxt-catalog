@@ -16,8 +16,6 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import "~assets/styles/_mixins.scss";
-@import "~assets/styles/_vars.scss";
 
 .rating {
   display: flex;

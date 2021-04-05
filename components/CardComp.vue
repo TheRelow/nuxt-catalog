@@ -9,7 +9,7 @@
       </div>
     </div>
     <div :class="$style['card__price']">
-      {{ productData.price }} ₽
+      {{ productData.price | currency }}
     </div>
     <button :class="{[$style['card__add-to-cart']]: true, [$style.active]: isProductInCart}" @click="addToCart"></button>
     <RatingComp :class="$style['card__rating']" :rating="productData.rating"></RatingComp>
@@ -27,15 +27,15 @@ export default {
   components: { RatingComp },
   computed: {
     productData() {
-      return this.$store.getters["main/getProductById"](this.value.id)
+      return this.$store.getters["products/getProductById"](this.value.id)
     },
     isProductInCart() {
-      return this.$store.getters["main/isProductInCart"](this.value.id)
+      return this.$store.getters["products/isProductInCart"](this.value.id)
     }
   },
   methods: {
     addToCart() {
-      this.$store.commit('main/addToCart', this.value.id)
+      this.$store.commit('products/addToCart', this.value.id)
     }
   },
   mounted() {
@@ -44,8 +44,6 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import "~assets/styles/_mixins.scss";
-@import "~assets/styles/_vars.scss";
 .card {
   position: relative;
   display: flex;
@@ -60,6 +58,8 @@ export default {
   font-size: 0.875rem;
   color: $grey;
   &_empty {
+    margin: 0;
+    padding: 0;
     background-color: transparent;
     box-shadow: none;
   }
@@ -98,7 +98,13 @@ export default {
   }
 }
 .card__title {
+  max-height: 32px;
   margin-top: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 }
 .card__price {
   margin-top: 6px;

@@ -49,8 +49,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~assets/styles/_mixins.scss";
-@import "~assets/styles/_vars.scss";
 .input {
   display: flex;
   align-items: center;

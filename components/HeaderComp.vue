@@ -13,7 +13,7 @@
 export default {
   computed: {
     cartCount() {
-      return this.$store.getters["main/getCartCount"]
+      return this.$store.getters["products/getCartCount"]
     }
   },
   methods: {
@@ -25,8 +25,6 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import "~assets/styles/_mixins.scss";
-@import "~assets/styles/_vars.scss";
 .header {
   position: fixed;
   top: 0;

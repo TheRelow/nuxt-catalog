@@ -14,15 +14,13 @@ export default {
   },
   computed: {
     cardProducts() {
-      return this.$store.getters["main/getCartItems"]
+      return this.$store.getters["products/getCartItems"]
     }
   }
 }
 </script>
 
 <style lang="scss" module>
-@import "~assets/styles/_mixins.scss";
-@import "~assets/styles/_vars.scss";
 .cart__list {
   margin-bottom: 32px;
 }
