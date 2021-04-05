@@ -6,16 +6,12 @@
 export default {
   async fetch({store}) {
     if (!store.getters['products/isModifiedCategories']) {
-      await store.dispatch('products/getCategories')
+      this.categories = await store.dispatch('products/getCategories')
     }
   },
-  middleware({redirect}) {
-    return redirect('/catalog/1')
+  async middleware({redirect, store}) {
+    console.log(this.categories)
+    // return redirect('/catalog/1')
   },
-  computed: {
-    categories() {
-      return this.$store.getters["products/getCategories"]
-    }
-  }
 }
 </script>

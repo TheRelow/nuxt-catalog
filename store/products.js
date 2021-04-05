@@ -96,7 +96,10 @@ export const getters = {
     return s.cart
   },
   getCategories: s => {
-    return s.categories
+    for (let key in s.categories) {
+      return s.categories
+    }
+    return false
   },
   isModifiedProductList: s => {
     return s.isModifiedProductList
@@ -109,7 +112,6 @@ export const getters = {
   },
   isProductInCart: s => id => {
     let idx = s.cart.indexOf(id)
-    console.log(idx)
     if (idx > - 1) {
       return true
     }

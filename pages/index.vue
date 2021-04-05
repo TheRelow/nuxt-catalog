@@ -6,9 +6,6 @@
 
 <script>
 export default {
-  transition: 'slide-bottom',
-  // middleware({redirect }) {
-  //   return redirect('/catalog/1')
-  // }
+  transition: 'slide-bottom'
 }
 </script>
