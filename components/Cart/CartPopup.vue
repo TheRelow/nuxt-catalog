@@ -1,5 +1,7 @@
 <template>
   <div :class="{[$style['cart-overlay']]: true, [$style['cart-overlay_active']]: isCartOpened}">
+    <div :class="$style['cart-overlay__bg']" @click="toggleCart">
+    </div>
     <div :class="$style['cart-overlay__content']">
       <CartComp></CartComp>
       <button :class="$style['cart-overlay__close']" @click="toggleCart"></button>
@@ -28,6 +30,16 @@ export default {
 </script>
 
 <style lang="scss" module>
+.cart-overlay__bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255,255,255, 0);
+  transition: background-color 0.4s;
+  content: '';
+}
 .cart-overlay {
   position: fixed;
   top: 0;
@@ -36,19 +48,9 @@ export default {
   left: 0;
   z-index: 150;
   pointer-events: none;
-  &:before {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(255,255,255, 0);
-    transition: background-color 0.4s;
-    content: '';
-  }
   &_active {
     pointer-events: all;
-    &:before {
+    .cart-overlay__bg {
       background-color: rgba(255,255,255, 0.8);
     }
   }

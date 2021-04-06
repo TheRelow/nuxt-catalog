@@ -39,7 +39,7 @@ export default {
     },
     send() {
       if (this.validate()) {
-        this.$store.commit("main/removeAllFromCart")
+        this.$store.commit("products/removeAllFromCart")
         this.$emit('success')
       }
     }

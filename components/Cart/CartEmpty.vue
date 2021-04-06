@@ -11,7 +11,10 @@
 export default {
   methods: {
     toggleCart() {
-      this.$router.push({ path: '/catalog' })
+      console.log()
+      if (this.$route.name !== 'catalog-id') {
+        this.$router.push({ path: '/catalog' })
+      }
       this.$store.commit('main/toggleCart')
     }
   }

@@ -1,17 +1,21 @@
 <template>
-  <div>index</div>
+  <div>Нет ни одной категории</div>
 </template>
 
 <script>
 export default {
-  async fetch({store}) {
+  async fetch({store, redirect}) {
     if (!store.getters['products/isModifiedCategories']) {
-      this.categories = await store.dispatch('products/getCategories')
+      await store.dispatch('products/getCategories')
     }
-  },
-  async middleware({redirect, store}) {
+    this.categories = store.getters["products/getCategories"]
     console.log(this.categories)
-    // return redirect('/catalog/1')
+    if (this.categories) {
+      for (let i in this.categories) {
+        redirect(`/catalog/${i}`)
+        return false
+      }
+    }
   },
 }
 </script>

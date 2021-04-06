@@ -33,6 +33,14 @@ export default {
         return false
       }
       return true
+    },
+    isCartOpened() {
+      return this.$store.getters["main/isCartOpened"]
+    }
+  },
+  watch: {
+    isCartOpened() {
+      this.isSuccess = false
     }
   },
   components: {

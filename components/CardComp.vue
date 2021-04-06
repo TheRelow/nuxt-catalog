@@ -50,6 +50,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   width: calc(100% / 4 - 16px / 4 * 3);
+  max-height: 282px;
   margin-bottom: 16px;
   padding: 16px;
   border-radius: 8px;
