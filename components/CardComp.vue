@@ -48,7 +48,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: calc((100% - 16px) / 4 - 16px / 4 * 3);
+  @include col(4);
   margin: 8px;
   max-height: 282px;
   padding: 16px;
@@ -79,6 +79,7 @@ export default {
   height: 180px;
   img {
     max-height: 100%;
+    max-width: 100%;
     transition: transform 0.4s;
   }
 }

@@ -46,7 +46,7 @@ export default {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-height: 120px;
+  height: 120px;
   margin-bottom: 12px;
   padding: 15px 25px 12px;
   background: #FFFFFF;

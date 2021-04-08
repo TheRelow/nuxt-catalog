@@ -27,7 +27,7 @@
   @if($col < 2) {
     $col1: $col;
   }
-  width: unquote("calc(100%/") $col unquote("-") $gap unquote("/") $col unquote("*") $col1 unquote(")");
+  width: unquote("calc((100% - ") $gap unquote(")/") $col unquote("-") $gap unquote("/") $col unquote("*") $col1 unquote(")");
 }
 
 @mixin pseudo($pos: absolute, $display: block, $content: ''){
