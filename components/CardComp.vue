@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.card" v-if="!empty">
+  <div :class="$style.card">
     <div :class="$style['card__top']">
       <div :class="$style['card__img']">
         <img :data-src="imgDomain + productData.photo" alt="" v-if="productData" v-lazy-load>
@@ -14,13 +14,12 @@
     <button :class="{[$style['card__add-to-cart']]: true, [$style.active]: isProductInCart}" @click="addToCart"></button>
     <RatingComp :class="$style['card__rating']" :rating="productData.rating"></RatingComp>
   </div>
-  <div :class="{[$style.card]: true, [$style['card_empty']]: true}" v-else></div>
 </template>
 
 <script>
 import RatingComp from "@/components/RatingComp";
 export default {
-  props: ['value', 'empty'],
+  props: ['value'],
   data: ()=>({
     imgDomain: 'https://frontend-test.idaproject.com'
   }),
@@ -49,21 +48,15 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: calc(100% / 4 - 16px / 4 * 3);
+  width: calc((100% - 16px) / 4 - 16px / 4 * 3);
+  margin: 8px;
   max-height: 282px;
-  margin-bottom: 16px;
   padding: 16px;
   border-radius: 8px;
   background-color: $white;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
   font-size: 0.875rem;
   color: $grey;
-  &_empty {
-    margin: 0;
-    padding: 0;
-    background-color: transparent;
-    box-shadow: none;
-  }
   @include _1024 {
     @include col(3)
   }
