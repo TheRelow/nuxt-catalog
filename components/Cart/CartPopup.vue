@@ -21,6 +21,15 @@ export default {
       return this.$store.getters["main/isCartOpened"]
     }
   },
+  watch: {
+    isCartOpened(val) {
+      if (val == true) {
+        document.body.style.overflow = 'hidden'
+      } else {
+        document.body.style.overflow = 'visible'
+      }
+    }
+  },
   methods: {
     toggleCart() {
       this.$store.commit('main/toggleCart')

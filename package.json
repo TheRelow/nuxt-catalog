@@ -16,6 +16,7 @@
     "normalize.css": "^8.0.1",
     "nuxt": "^2.14.12",
     "nuxt-lazy-load": "^1.2.5",
+    "vue-click-outside": "^1.1.0",
     "vue-currency-filter": "^5.2.0",
     "vuelidate": "^0.7.6"
   },

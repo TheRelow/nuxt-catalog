@@ -2,17 +2,17 @@
   <div :class="$style.card">
     <div :class="$style['card__top']">
       <div :class="$style['card__img']">
-        <img :data-src="imgDomain + productData.photo" alt="" v-if="productData" v-lazy-load>
+        <img :data-src="imgDomain + value.product.photo" alt="" v-lazy-load>
       </div>
       <div :class="$style['card__title']">
-        {{ productData.name }}
+        {{ value.product.name }}
       </div>
     </div>
     <div :class="$style['card__price']">
-      {{ productData.price | currency }}
+      {{ value.product.price | currency }}
     </div>
     <button :class="{[$style['card__add-to-cart']]: true, [$style.active]: isProductInCart}" @click="addToCart"></button>
-    <RatingComp :class="$style['card__rating']" :rating="productData.rating"></RatingComp>
+    <RatingComp :class="$style['card__rating']" :rating="value.product.rating"></RatingComp>
   </div>
 </template>
 
@@ -25,16 +25,13 @@ export default {
   }),
   components: { RatingComp },
   computed: {
-    productData() {
-      return this.$store.getters["products/getProductById"](this.value.id)
-    },
     isProductInCart() {
-      return this.$store.getters["products/isProductInCart"](this.value.id)
+      return this.$store.getters["products/isProductInCart"](this.value.product.id)
     }
   },
   methods: {
     addToCart() {
-      this.$store.commit('products/addToCart', this.value.id)
+      this.$store.commit('products/addToCart', this.value.product.id)
     }
   },
   mounted() {

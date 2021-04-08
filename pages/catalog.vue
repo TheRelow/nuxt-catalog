@@ -2,6 +2,10 @@
   <div :class="$style.catalog">
     <div :class="$style['catalog__heading']">
       <h1>Каталог</h1>
+      <div :class="$style['catalog__select']">
+        Сортировать по:
+        <base-select v-model="sortBy" @selected="sort"></base-select>
+      </div>
     </div>
     <div :class="$style['catalog__content']">
       <div :class="$style['catalog__side']">
@@ -32,12 +36,26 @@ export default {
     }
   },
   data: ()=>({
+    sortBy: {
+      options: [
+        { name: 'цене', selected: true, value: 'price', showInList: 'По цене' },
+        { name: 'популярности', value: 'popular', showInList: 'По популярности' },
+      ],
+      selectedNames: []
+    }
   }),
   computed: {
     categories() {
       return this.$store.getters["products/getCategories"]
     }
-  }
+  },
+  methods: {
+    sort(val) {
+      if (val[0]) {
+        this.$store.commit('main/setSortBy', val[0])
+      }
+    },
+  },
 }
 </script>
 
@@ -106,5 +124,12 @@ export default {
       margin-right: 20px;
     }
   }
+}
+.catalog__select {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  white-space: nowrap;
 }
 </style>

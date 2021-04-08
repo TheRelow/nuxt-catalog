@@ -79,7 +79,11 @@ export const actions = {
 export const getters = {
   getProductsByCategoryId: s => id => {
     if (s.productsByCategories[id]) {
-      return s.productsByCategories[id]
+      let resultArray = []
+      for (let i of s.productsByCategories[id]) {
+        resultArray.push(s.productList[i])
+      }
+      return resultArray
     }
     return false
   },
