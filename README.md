@@ -1,11 +1,1 @@
-# test-list
-
-## Локальный запуск проекта
-
-```bash
-# установка зависимостей
-$ npm install
-
-# Запуск
-$ npm run dev
-```
+![img.png](img.png)
